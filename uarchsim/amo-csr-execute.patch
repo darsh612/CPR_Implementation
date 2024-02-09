@@ -1,0 +1,13 @@
+diff --git a/uarchsim/execute.cc b/uarchsim/execute.cc
+index c730278..7904483 100644
+--- a/uarchsim/execute.cc
++++ b/uarchsim/execute.cc
+@@ -110,7 +110,7 @@ void pipeline_t::execute(unsigned int lane_number) {
+             }
+          }
+       }
+-      else {
++      else if (!IS_AMO(PAY.buf[index].flags) && !IS_CSR(PAY.buf[index].flags)) {
+          // Execute the ALU-type instruction on the ALU.
+          try {
+             alu(index);
